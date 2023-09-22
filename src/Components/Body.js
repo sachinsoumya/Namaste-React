@@ -1,79 +1,92 @@
 import resList from "../Utils/mockData";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 import RestCart from "./RestCart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Body = () => {
-
   //  local state variable - super powerful variables
 
-  const arr = useState(resList);
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [filteredRes, setFilteredRes] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  //whenever state variable changes react triggers reconciliation cycle(It rerebders the componenet)
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log("Hello");
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=21.46789512067949&lng=86.87785673886538"
+    );
+    const json = await data.json();
+    console.log(json);
+    setRestaurantList(
+      json.data.success.cards[3].gridWidget.gridElements.infoWithStyle
+        .restaurants
+    );
+
+    setFilteredRes(
+      json.data.success.cards[3].gridWidget.gridElements.infoWithStyle
+        .restaurants
+    );
+    // console.log(restaurantList);
+  };
+  //conditional rendering
+  // if (restaurantList.length === 0) {
+  //   return <div>Loading...</div>;
+  // }
 
   // const [restaurantList , setRestaurantList] = arr ;
 
-  const restaurantList=arr[0]
-  const setRestaurantList= arr[1]
+  const status = useOnlineStatus();
 
-//normal js variable
-  // let resList1 = null ;
-  
-    
+  if (status === false)
+    return <h1>Oopps...check your internet connection and try again</h1>;
 
-
-// Normal JS variable
-
-// let list = [];
-// list.push('1')
-
-  // let resList2 = [
-  //   {
-  //     id: "694217",
-  //     name: "Sprout'O-Only Healthy Diet",
-  //     cloudinaryImageId: "cffb9b6f1d2ebbab95b87658e4a44359",
-  //     locality: "Irc village",
-  //     areaName: "Jayadev Vihar",
-  //     costForTwo: "₹248 for two",
-  //     cuisines: ["Healthy Food", "Salads"],
-  //     avgRating: 4.2,
-  //     totalFee: 3200,
-  //   },
-
-  //   {
-  //     id: "220360",
-  //     name: "Priya",
-  //     cloudinaryImageId: "oivksbtnt4ufouny0srf",
-  //     locality: "Jaydev Vihar",
-  //     areaName: "Jayadev Vihar",
-  //     costForTwo: "₹250 for two",
-  //     cuisines: ["South Indian", "North Indian", "Tandoor"],
-  //     avgRating: 4.1,
-  //     veg: true,
-  //     totalFee: 2600,
-  //   },
-
-  //   {
-  //     id: "305733",
-  //     name: "Brew Xpresz",
-  //     cloudinaryImageId: "havcrzaqwr95js0pukgg",
-  //     locality: "Doordarshan Colony",
-  //     areaName: "Jayadev Vihar",
-  //     costForTwo: "₹300 for two",
-  //     cuisines: ["Pizzas", "Pastas", "Beverages"],
-  //     avgRating: 3.2,
-  //     totalFee: 2600,
-  //   },
-  // ];
-  return (
+  return restaurantList.length === 0 ? (
+    <div>Loading...</div>
+  ) : (
     <div className="body">
       <div className="filter">
+        <input
+          type="text"
+          className="searchbox"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+        <button
+          onClick={() => {
+            console.log(searchText);
+            const filteredRestaurant = restaurantList.filter((res) =>
+              res.info.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            console.log(filteredRestaurant);
+
+            setFilteredRes(filteredRestaurant);
+
+            console.log(restaurantList);
+
+            //filter the card and upadte the UI
+          }}
+        >
+          search
+        </button>
         <button
           className="filter-btn"
           onClick={() => {
-            const filterList = restaurantList.filter((res) => res.avgRating > 4);
+            const filterList = restaurantList.filter(
+              (res) => res.info.avgRating > 4
+            );
             console.log(restaurantList);
-            setRestaurantList(filterList)
-          }
-          
-        }
+            setFilteredRes(filterList);
+          }}
         >
           Top rated restaurant
         </button>
@@ -82,8 +95,12 @@ const Body = () => {
       <div className="resContainer">
         {/*not using keys (not acceptable)<<< using index as keys <<< using ids as keys(best pratice)*/}
 
-        {restaurantList.map((res) => {
-          return <RestCart key={res.id} resData={res} />;
+        {filteredRes.map((res) => {
+          return (
+            <Link to={`/restaurants/${res.info.id}`} key={res.info.id}>
+              <RestCart resData={res.info} />
+            </Link>
+          );
         })}
       </div>
     </div>
