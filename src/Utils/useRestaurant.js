@@ -10,7 +10,7 @@ useEffect(()=>{
 } , [])
 
 const fetchData = async() =>{
-    const data = await fetch(`${MENU_ID}=${resId}&submitAction=ENTER`);
+    const data = await fetch(`${MENU_ID}=${resId}&catalog_qa=undefined&submitAction=ENTER`);
     const json = await data.json();
 
     console.log(json);

@@ -144,6 +144,22 @@ react element => React Element(JS Object) => HTML elements when render
  1. https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.46789512067949&lng=86.87785673886538&restaurantId=731314&submitAction=ENTER
 
  2.https://api.github.com/users/SACHINSOUMYA
+
+
+
+ # REDUX Toolkit
+ ------------------
+  - install @reduxjs/toolkit and react-redux
+  - Build our own store
+  - Connect our store to our app.
+  - Slice (Cart Slice)
+  - dispatch(action)
+  - Selector
+
+
+
+
+ 
  
 
 
