@@ -34,7 +34,7 @@ const RestaurantCategory = ({ category , menus , changeIndex}) => {
 
       {/*  body scetion */}
 
-      {menus && <ItemList items = {category.itemCards} />}
+      {menus && <ItemList data-testid="item" items = {category.itemCards} />}
     </div>
   );
 };

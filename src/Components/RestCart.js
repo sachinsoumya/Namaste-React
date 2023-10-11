@@ -19,7 +19,7 @@ const RestCart = (props) => {
 
 
   const {loggedinUser} = useContext(UserContext)
-  // console.log(resData.name);
+  console.log(resData);
 
 
 
@@ -27,7 +27,7 @@ const RestCart = (props) => {
 
   if (resData) {
     return (
-      <div className="res-card w-56  border border-black hover:border-t-4 text-blue-600 p-3 h-100 mt-6 text-left bg-slate-200  hover:bg-orange-300 rounded-lg drop-shadow-lg">
+      <div data-testid="res-card" className="res-card w-56  border border-black hover:border-t-4 text-blue-600 p-3 h-100 mt-6 text-left bg-slate-200  hover:bg-orange-300 rounded-lg drop-shadow-lg">
       
         <img
           className="res-logo w-56 rounded-lg "

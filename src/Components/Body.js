@@ -61,6 +61,7 @@ const Body = () => {
       <div className="filter">
         <input
           type="text"
+          data-testid="searchInput"
           className="border-b-4 border-indigo-500 m-4 w-60"
           value={searchText}
           onChange={(e) => {
@@ -100,7 +101,7 @@ const Body = () => {
 
         <label htmlFor="uname" className="mx-3">User Name</label>
 
-        <input type="text" id="uname" className="w-50 mx-5 p-1 border border-yellow-600" value={loggedinUser} onChange={(e)=>setUserInfo(e.target.value)} />
+        <input type="text" id="uname" className="w-50 mx-5 p-1 border border-yellow-600"  value={loggedinUser} onChange={(e)=>setUserInfo(e.target.value)} />
       </div>
 
       <div className="flex flex-wrap justify-evenly">
