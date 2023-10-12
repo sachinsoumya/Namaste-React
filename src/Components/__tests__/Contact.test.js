@@ -57,7 +57,7 @@ describe("Test cases for contact" , ()=>{
     //querying 
         const inputBoxes = screen.getAllByRole('textbox');
     
-        console.log(inputBoxes.length);
+        // console.log(inputBoxes.length);
     //Assertion
         expect(inputBoxes.length).not.toBe(3);
     

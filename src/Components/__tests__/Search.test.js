@@ -34,7 +34,7 @@ it("Should search res list for Restaurant text input", async () => {
   //   const searchButton = screen.getByText("search");
 
   const searchInput = screen.getByTestId("searchInput");
-  console.log(searchInput);
+  // console.log(searchInput);
 
   fireEvent.change(searchInput, { target: { value: "Restaurant" } });
 
@@ -83,3 +83,24 @@ it("Should filter top rated restaurant " , async()=>{
 
 
 });
+
+// it("Should load the menus component" , ()=>{
+//   await act(asyn c()=>render(
+//     <BrowserRouter>
+//      <Body />
+//     </BrowserRouter>
+//   ))
+
+
+
+
+
+
+// //  const resName = screen.getByText("Nana");
+
+// //  fireEvent.click(resName);
+// //  expect().toBeInTheDocument()
+
+
+
+// })

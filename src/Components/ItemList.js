@@ -15,12 +15,13 @@ const ItemList = ({ items }) => {
   // console.log(items);
 
   return (
-    <div className="py-5 text-left">
+    <div className="py-5 text-left" >
       {items.map((item) => {
         return (
           <div
             key={item.card.info.id}
             className="py-3 font-medium flex justify-between border-b-2 border-grey-200"
+            data-testid="menuItem"
           >
             {/*Name*/}
             <div>

@@ -75,6 +75,8 @@ const Restaurantmenu = () => {
           return (
             <RestaurantCategory
               key = {item?.card?.card.title}
+              
+              
               category={item?.card?.card}
               menus={index === showindex  ? true : false}
               changeIndex = {()=> setShowindex(index)}
