@@ -157,6 +157,27 @@ react element => React Element(JS Object) => HTML elements when render
   - Selector
 
 
+  # Testing 
+  --------------
+  Types of testings - 
+
+   1. Unit Testing 
+   2.Integration Testing
+   3.End to end Testing - e2e
+
+  ## Setting up  Testing in react app
+  --------------------------------------
+  - Installed react testing library .
+  - Installed jest .
+  - Install Babel dependencies .
+  - Configure Babel
+  - Configure parcel config file to disable the default babel transpilation .
+  - Jest - npx jest --init.
+  - Install @jsdom library .
+  - Install @babel/ preset-react  to make JSX works in test cases .
+  - Include @babel/preset-react inside my babel config .
+  - npm i -D @testing-library/jest-dom .
+  
 
 
  

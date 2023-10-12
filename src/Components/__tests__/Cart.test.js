@@ -127,3 +127,4 @@ it("Should load restaurant menu component", async () => {
   fireEvent.click(clearBtn);
   expect(screen.getAllByTestId("menuItem").length).toBe(15);
 });
+
